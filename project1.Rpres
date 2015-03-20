@@ -1,0 +1,62 @@
+
+
+Project for Developing Data Products
+========================================================
+author: xinrong
+date: March 19,2015
+
+**Outline of these document**: 
+- Overview
+- Fitting A Random Forest model
+- Model Summary
+- Prediction with Shiny
+
+Overview
+========================================================
+This project uses jobclass,education,race and age (Data source: Wage in ISLR package) to predict wage.  
+Highlight:  Jobs related to 'Information' dominate the top tier incomes.
+
+```{r,warning=FALSE,echo=FALSE}
+library(ISLR);library(ggplot2);library(caret);library(gridExtra)
+data(Wage) 
+qplot(age,wage,data=Wage,color=race)
+#qplot(age,wage,data=Wage,color=education)
+#p3<-qplot(age,wage,data=Wage,color=jobclass)
+#grid.arrange(p2,p3, ncol=2,nrow=1)
+
+
+```
+
+
+Fitting a boosted tree model 
+========================================================
+```{r,warning=FALSE,width=4}
+fit1<-train(wage~jobclass+age+race+education,
+            method="gbm",data=Wage,verbose=FALSE) 
+summary(fit1$finalModel)
+```
+
+Important factors
+========================================================
+```{r}
+varImp(fit1$finalModel)
+```
+```{r,echo=FALSE}
+#too much to show in one scree
+#trellis.par.set(caretTheme())
+#plot(fit1)  
+#summary(fit1$finalModel)
+```
+
+Prediction Application with Shiny 
+========================================================
+```{r,echo=FALSE}
+#test<-subset(Wage,year==2009)
+#predict(fit1,newdata=test)
+```
+**link to shiny app**
+http://xinrong.shinyapps.io/FirstShiny  
+
+
+![alt text](shiny.jpg)
+
