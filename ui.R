@@ -3,10 +3,13 @@ library(caret)
 library(ggplot2)
 library(ISLR)
 library(gbm)
+<<<<<<< HEAD
 library(rCharts)
 library(googleVis)
 
 
+=======
+>>>>>>> 87e6061d47c8862ee90a062d693e3158a913b9e1
 shinyUI(pageWithSidebar(
   headerPanel("Predicting wage using a simple model"),
   sidebarPanel(
@@ -36,6 +39,7 @@ shinyUI(pageWithSidebar(
         
     span(h3('This person shall make (in thousand dollars)'), style = "color:blue"),
     
+<<<<<<< HEAD
     verbatimTextOutput("opred"),
     
     h3('Plot of wage by year with your selected race (takes time to load...)'), 
@@ -46,5 +50,8 @@ shinyUI(pageWithSidebar(
     htmlOutput("myTable")
     
     
+=======
+    verbatimTextOutput("opred")
+>>>>>>> 87e6061d47c8862ee90a062d693e3158a913b9e1
   )
 ))

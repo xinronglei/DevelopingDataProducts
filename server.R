@@ -5,6 +5,7 @@ library(caret)
 library(ggplot2)
 library(ISLR)
 library(gbm)
+<<<<<<< HEAD
 library(rCharts)
 library(sqldf)
 library(googleVis)
@@ -12,6 +13,10 @@ library(googleVis)
 data(Wage) 
 
 W2<-sqldf("select distinct avg(wage) as wage,race, jobclass,education,year from Wage group by year,jobclass,education,race")
+=======
+
+data(Wage) 
+>>>>>>> 87e6061d47c8862ee90a062d693e3158a913b9e1
 #for prediction function
 fit1<-train(wage~jobclass+age+race+education,
             method="gbm",data=Wage,verbose=FALSE) 
@@ -28,7 +33,11 @@ pred<-function(jobclass,race,education,age){
 }
 
 
+<<<<<<< HEAD
 
+=======
+library(shiny)
+>>>>>>> 87e6061d47c8862ee90a062d693e3158a913b9e1
 shinyServer(
   function(input, output) {
     output$orace <- renderPrint({input$race})
@@ -38,6 +47,7 @@ shinyServer(
    
     output$opred <- renderPrint({pred(input$jobclass,input$race,input$education,input$age)})    
     
+<<<<<<< HEAD
     output$plotwage <- renderChart({
       n1<-rPlot(wage~year|jobclass,data=W2[W2$race==input$race,],color='education',type='point')
       n1$set(title="Wage by year in the training set" ,dom='plotwage')
@@ -49,5 +59,7 @@ shinyServer(
       return(t1)
     })
     
+=======
+>>>>>>> 87e6061d47c8862ee90a062d693e3158a913b9e1
   }
 )
